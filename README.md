@@ -280,6 +280,29 @@ sysbench provides a number of algorithms to generate random numbers that are dis
 `--rand-pareto-h` | shape parameter for the Pareto distribution | 0.2
 `--rand-zipfian-exp` | shape parameter (theta) for the Zipfian distribution | 0.8
 
+# *Additional Tests of Real-World Workloads
+We share some typical workloads from real customers here:
+-  Insertion on a lot of small tables（User shopping cart）
+``` shell
+  sysbench --mysql-user='xxx' --mysql-password='xxx' --mysql-db='xxx' --mysql-host='xxx' --mysql-port=xxx  --tables=1000 --time=600 --report-interval=1  --table_size=1000 --threads=512 small_table cleanup / prepare / run
+```
+-  Multiple insertion (Application logining)
+``` shell
+  sysbench --mysql-user='xxx' --mysql-password='xxx' --mysql-db='xxx'  --mysql-host='xxx' --mysql-port=xxx  --tables=50 --time=600 --report-interval=1  --table_size=10000000 --threads=128 live_item cleanup / prepare / run
+```
+- Hotspot updating (Hot shopping event)
+``` shell
+  sysbench --mysql-user='xxx' --mysql-password='xxx' --mysql-db='xxx'  --mysql-host='xxx' --mysql-port=xxx  --tables=1 --time=600 --report-interval=1  --table_size=100000 --threads=512 hotspot_update cleanup / prepare / run
+```
+- Updating on long-field table (Online game supports)
+``` shell
+  sysbench --mysql-user='xxx' --mysql-password='xxx' --mysql-db='xxx'  --mysql-host='xxx' --mysql-port=xxx  --tables=50 --time=600 --report-interval=1  --table_size=10000 --threads=128 update_big_record cleanup / prepare / run
+```
+- Insertion on multiple indexes
+``` shell
+  sysbench --mysql-user='xxx' --mysql-password='xxx' --mysql-db='xxx'  --mysql-host=xxx --mysql-port=3306  --tables=250 --time=600 --report-interval=1 --table_size=1 --threads=250 insert_multi_index cleanup / prepare / run
+```
+
 # Versioning
 
 For transparency and insight into its release cycle, and for striving to maintain backward compatibility, sysbench will be maintained under the Semantic Versioning guidelines as much as possible.
@@ -295,6 +318,7 @@ And constructed with the following guidelines:
 * Bug fixes and misc changes bumps the patch
 
 For more information on SemVer, please visit [http://semver.org/](http://semver.org/).
+
 
 [coveralls-badge]: https://coveralls.io/repos/github/akopytov/sysbench/badge.svg?branch=master
 [coveralls-url]: https://coveralls.io/github/akopytov/sysbench?branch=master
