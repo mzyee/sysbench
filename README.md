@@ -26,7 +26,7 @@
     - [General Syntax](#general-syntax)
     - [General Command Line Options](#general-command-line-options)
     - [Random Numbers Options](#random-numbers-options)
-- [*Additional Tests of Real-World Workloads](#*additional-tests-of-real-world-workloads)
+- [Benchmark for Real World Workloads](#benchmark-for-real-world-workloads)
 - [Versioning](#versioning)
 
 <!-- markdown-toc end -->
@@ -58,6 +58,10 @@ sysbench comes with the following bundled benchmarks:
   in user-provided Lua scripts;
 - can be used as a general-purpose Lua interpreter as well, simply
   replace `#!/usr/bin/lua` with `#!/usr/bin/sysbench` in your script.
+
+## Note
+
+- some additional database benchmarks are added in [Benchmark for Real World Workloads](#benchmark-for-real-world-workloads).
 
 # Installing from Binary Packages
 
@@ -281,7 +285,8 @@ sysbench provides a number of algorithms to generate random numbers that are dis
 `--rand-pareto-h` | shape parameter for the Pareto distribution | 0.2
 `--rand-zipfian-exp` | shape parameter (theta) for the Zipfian distribution | 0.8
 
-# *Additional Tests of Real-World Workloads
+# *Benchmark for Real World Workloads*
+
 We share some typical workloads from real customers here:
 -  Insertion on a lot of small tables（User shopping cart）
 ``` shell
