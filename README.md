@@ -26,6 +26,7 @@
     - [General Syntax](#general-syntax)
     - [General Command Line Options](#general-command-line-options)
     - [Random Numbers Options](#random-numbers-options)
+- [*Additional Tests of Real-World Workloads](#*additional-tests-of-real-world-workloads)
 - [Versioning](#versioning)
 
 <!-- markdown-toc end -->
@@ -296,7 +297,7 @@ We share some typical workloads from real customers here:
 ```
 - Updating on long-field table (Online game supports)
 ``` shell
-  sysbench --mysql-user='xxx' --mysql-password='xxx' --mysql-db='xxx'  --mysql-host='xxx' --mysql-port=xxx  --tables=50 --time=600 --report-interval=1  --table_size=10000 --threads=128 update_big_record cleanup / prepare / run
+  sysbench --mysql-user='xxx' --mysql-password='xxx' --mysql-db='xxx'  --mysql-host='xxx' --mysql-port=xxx  --tables=50 --time=600 --report-interval=1  --table_size=1000000 --block_num=1 --threads=128 update_big_record cleanup / prepare / run
 ```
 - Insertion on multiple indexes
 ``` shell

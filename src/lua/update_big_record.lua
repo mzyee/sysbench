@@ -18,13 +18,12 @@ sysbench.cmdline.options = {
    tables =
       {"Number of tables", 1},
    non_index_updates =
-      {"Number of UPDATE non-index queries per transaction", 1}
+      {"Number of UPDATE non-index queries per transaction", 1},
+   block_num = 
+      {"Number of data block per table", 1}
 }
 
-str_index = 1
-cur_index = 1
-step = 2500
-block_num = 1
+
 
 local c_value_template_2k1 = "####################################################################################################" ..
    "####################################################################################################" ..
@@ -92,7 +91,7 @@ CREATE TABLE `t_block_record_pk_%d`(
    con:bulk_insert_init(query)
 
    for i = 1, sysbench.opt.table_size do
-      for j = 1, block_num do
+      for j = 1, sysbench.opt.block_num do
          user_id_val = i 
          block_id_val = j
          data_version_val = 2274 
@@ -225,7 +224,7 @@ function event()
 
    for i = 1, sysbench.opt.non_index_updates do
       user_id = sysbench.rand.default(1, sysbench.opt.table_size)
-      block_id = sysbench.rand.default(1, block_num)
+      block_id = sysbench.rand.default(1, sysbench.opt.block_num)
 
       if math.random(0,100) % 10 < 5 then
           param[tnum].non_index_updates[1]:set_rand_str(c_value_template_2k1)
